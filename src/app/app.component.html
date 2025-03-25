@@ -202,8 +202,19 @@
           </clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title }}</h1>
-      <app-outer-counter></app-outer-counter>
+      <div class="container mx-auto mt-8">
+        <h1>Hello, {{ title }}</h1>
+        <div class="flex flex-wrap justify-center gap-8">
+          <div class="w-full md:w-1/2">
+            <app-outer-counter></app-outer-counter>
+          </div>
+          <div class="w-full md:w-1/2">
+            <app-outer-counter-signal></app-outer-counter-signal>
+          </div>
+        </div>
+
+      </div>
+
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
