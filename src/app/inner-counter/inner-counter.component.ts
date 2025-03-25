@@ -8,8 +8,7 @@ import { Component, DoCheck, ElementRef, Input, Renderer2, ViewChild } from '@an
       <h2 class="text-2xl text-white">Inner Component Counter receiving prop</h2>
       <p class="text-white">Counter: {{ count }}</p>
     </div>
-  `,
-  styleUrl: './inner-counter.component.scss'
+  `
 })
 export class InnerCounterComponent implements DoCheck {
   @Input() count = 0;

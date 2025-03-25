@@ -13,8 +13,7 @@ import { UnrelatedElementComponent } from '../unrelated-element/unrelated-elemen
       <app-inner-counter [count]="count"></app-inner-counter>
       <app-unrelated-element></app-unrelated-element>
     </div>
-  `,
-  styleUrl: './outer-counter.component.scss'
+  `
 })
 export class OuterCounterComponent implements DoCheck {
   count = 0;
