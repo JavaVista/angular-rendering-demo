@@ -176,7 +176,7 @@
 
 <main class="main">
   <div class="content">
-    <div class="left-side">
+    <div class="left-side w-full">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 239" fill="none" class="angular-logo">
         <g clip-path="url(#a)">
           <path fill="url(#b)"
@@ -202,18 +202,29 @@
           </clipPath>
         </defs>
       </svg>
-      <div class="container mx-auto mt-8">
-        <h1>Hello, {{ title }}</h1>
-        <div class="flex flex-wrap justify-center gap-8">
-          <div class="w-full md:w-1/2">
-            <app-outer-counter></app-outer-counter>
+      <h1  class="text-center mb-8">Hello, {{ title }}</h1>
+          <div class="flex flex-col md:flex-row gap-4 justify-center items-start">
+            <!-- Zone.js based component -->
+            <div class="w-full md:w-1/2 p-2">
+              <h2 class="text-xl font-bold mb-2 text-center">Coarse-grained re-render</h2>
+              <app-outer-counter></app-outer-counter>
+            </div>
+          
+            <!-- Signal based component -->
+            <div class="w-full md:w-1/2 p-2">
+              <h2 class="text-xl font-bold mb-2 text-center">Fine-grained re-render</h2>
+              <app-outer-counter-signal></app-outer-counter-signal>
+            </div>
           </div>
-          <div class="w-full md:w-1/2">
-            <app-outer-counter-signal></app-outer-counter-signal>
+          
+          <div class="mt-8 p-4 bg-gray-100 rounded-md">
+            <p class="text-sm">
+              <strong>Demo explanation:</strong> This demonstrates the difference between Angular's default Zone.js change
+              detection (left) and fine-grained reactivity with Signals (right).
+              Notice how the Zone.js version highlights all components when the counter changes, while the Signals version only
+              highlights components that directly depend on the changed signal.
+            </p>
           </div>
-        </div>
-
-      </div>
 
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
