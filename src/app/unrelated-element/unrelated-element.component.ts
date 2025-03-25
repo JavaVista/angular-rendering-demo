@@ -12,11 +12,18 @@ import { Component, DoCheck, ElementRef, Renderer2, ViewChild } from '@angular/c
 })
 export class UnrelatedElementComponent implements DoCheck {
   @ViewChild('contentDiv', { static: true }) contentDiv!: ElementRef;
+  private highlight = false;
 
   constructor(private renderer: Renderer2) { }
 
+  // This ngDoCheck method demonstrates how Angular's default (Zone.js) change
+  // detection runs even in components *unrelated* to the data that changed.
   ngDoCheck() {
-    this.highlightElement(this.contentDiv.nativeElement);
+    console.log('UnrelatedElementComponent — change detection triggered!');
+    if (this.highlight) {
+      this.highlightElement(this.contentDiv.nativeElement);
+      this.highlight = false;
+    }
   }
 
   private highlightElement(element: HTMLElement) {
@@ -24,5 +31,9 @@ export class UnrelatedElementComponent implements DoCheck {
     setTimeout(() => {
       this.renderer.removeStyle(element, 'border');
     }, 500);
+  }
+
+  triggerHighlight() {
+    this.highlight = true;
   }
 }

@@ -20,13 +20,21 @@ export class OuterCounterComponent implements DoCheck {
   private lastCount = -1;
 
   @ViewChild('contentDiv', { static: true }) contentDiv!: ElementRef;
+  @ViewChild(UnrelatedElementComponent) unrelatedComponent!: UnrelatedElementComponent;
 
   constructor(private renderer: Renderer2) { }
 
+  // This ngDoCheck method demonstrates how Angular's default (Zone.js) change
+  // detection runs even when seemingly unrelated components are present.
   ngDoCheck() {
     if (this.count !== this.lastCount) {
       this.lastCount = this.count;
+      // Highlight *this* component.
       this.highlightElement(this.contentDiv.nativeElement);
+      if (this.unrelatedComponent) {
+        // Trigger highlight in the unrelated component
+        this.unrelatedComponent.triggerHighlight();
+      }
     }
   }
 

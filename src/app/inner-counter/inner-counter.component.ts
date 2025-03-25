@@ -18,9 +18,11 @@ export class InnerCounterComponent implements DoCheck {
 
   constructor(private renderer: Renderer2) { }
 
+  // Demonstrates that ngDoCheck (change detection) runs when the @Input() 'count' changes.
   ngDoCheck() {
     if (this.count !== this.lastCount) {
       this.lastCount = this.count;
+      // Highlight when the input changes.
       this.highlightElement(this.contentDiv.nativeElement);
     }
   }
