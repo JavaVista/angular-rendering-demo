@@ -5,7 +5,7 @@ import { Component, DoCheck, ElementRef, Renderer2, ViewChild } from '@angular/c
   imports: [],
   template: `
     <div #contentDiv class="bg-green-300 mt-6 p-4 rounded-md my-2">
-     <h2 class="text-2xl font-semibold text-gray-800">Unrelated Component (Signal)</h2>
+     <h2 class="text-xl font-semibold text-gray-800">Unrelated Component (Signal)</h2>
       <p>Unrelated content...</p>
     </div>
   `
