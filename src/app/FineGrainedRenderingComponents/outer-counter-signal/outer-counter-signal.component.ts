@@ -17,29 +17,14 @@ import { UnrelatedElementSignalComponent } from '../unrelated-element-signal/unr
 })
 export class OuterCounterSignalComponent {
   count = signal(0);
-  private lastCount = -1;
 
   @ViewChild('contentDiv', { static: true }) contentDiv!: ElementRef;
   @ViewChild(UnrelatedElementSignalComponent) unrelatedComponent!: UnrelatedElementSignalComponent;
 
   constructor(private renderer: Renderer2) { }
 
-  // This ngDoCheck method demonstrates how Angular's default (Zone.js) change
-  // detection runs even when seemingly unrelated components are present.
-  // ngDoCheck() {
-  //   if (this.count !== this.lastCount) {
-  //     this.lastCount = this.count;
-  //     // Highlight *this* component.
-  //     this.highlightElement(this.contentDiv.nativeElement);
-  //     if (this.unrelatedComponent) {
-  //       // Trigger highlight in the unrelated component
-  //       this.unrelatedComponent.triggerHighlight();
-  //     }
-  //   }
-  // }
-
   increaseCount() {
-    this.count.update(c => c++);
+    this.count.update(c => c + 1);
     this.highlightElement(this.contentDiv.nativeElement);
   }
 

@@ -10,13 +10,18 @@ import { Component, DoCheck, effect, ElementRef, Input, OnInit, Renderer2, signa
     </div>
   `
 })
-export class InnerCounterSignalComponent implements OnInit {
+export class InnerCounterSignalComponent  {
   @Input() count = signal(0);
   private lastCount = -1;
 
   @ViewChild('contentDiv', { static: true }) contentDiv!: ElementRef;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2) {
+    effect(() => {
+      const currentCount = this.count();
+      this.highlightElement(this.contentDiv.nativeElement);
+    });
+   }
 
   // Demonstrates that ngDoCheck (change detection) runs when the @Input() 'count' changes.
   // ngDoCheck() {
@@ -27,11 +32,6 @@ export class InnerCounterSignalComponent implements OnInit {
   //   }
   // }
 
-  ngOnInit() {
-    effect(() => {
-      this.highlightElement(this.contentDiv.nativeElement);
-    });
-  }
 
   private highlightElement(element: HTMLElement) {
     this.renderer.setStyle(element, 'border', '8px solid red');
