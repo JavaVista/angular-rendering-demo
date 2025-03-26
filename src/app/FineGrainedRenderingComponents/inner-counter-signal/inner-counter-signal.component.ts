@@ -6,7 +6,7 @@ import { Component, DoCheck, effect, ElementRef, Input, OnInit, Renderer2, signa
   template: `
     <div #contentDiv class="bg-green-600 mt-6 p-4 rounded-md my-2">
       <h2 class="text-2xl text-white">Inner Component Counter receiving prop (Signal)</h2>
-      <p class="text-white">Counter: {{ count() }}</p>
+      <p class="m-4 text-white text-xl overline">Counter: {{ count() }}</p>
     </div>
   `
 })
@@ -22,16 +22,6 @@ export class InnerCounterSignalComponent  {
       this.highlightElement(this.contentDiv.nativeElement);
     });
    }
-
-  // Demonstrates that ngDoCheck (change detection) runs when the @Input() 'count' changes.
-  // ngDoCheck() {
-  //   if (this.count !== this.lastCount) {
-  //     this.lastCount = this.count;
-  //     // Highlight when the input changes.
-  //     this.highlightElement(this.contentDiv.nativeElement);
-  //   }
-  // }
-
 
   private highlightElement(element: HTMLElement) {
     this.renderer.setStyle(element, 'border', '8px solid red');

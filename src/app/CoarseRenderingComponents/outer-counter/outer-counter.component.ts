@@ -6,9 +6,9 @@ import { UnrelatedElementComponent } from '../unrelated-element/unrelated-elemen
   selector: 'app-outer-counter',
   imports: [InnerCounterComponent, UnrelatedElementComponent],
   template: `
-    <div #contentDiv class="bg-green-900 mt-6 p-4 rounded-md">
+    <div #contentDiv class="bg-green-900 mt-6 p-4 rounded-md h-full">
       <h2 class="text-2xl text-white">Outer Component Counter passing prop</h2>
-      <p class="text-white">Counter: {{ count }}</p>
+      <p class="m-4 text-white text-xl overline">Counter: {{ count }}</p>
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-2 py-2 px-4 rounded" (click)="increaseCount()">Increase</button>
       <app-inner-counter [count]="count"></app-inner-counter>
       <app-unrelated-element></app-unrelated-element>

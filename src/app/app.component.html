@@ -203,17 +203,17 @@
         </defs>
       </svg>
       <h1  class="text-center mb-8">Hello, {{ title }}</h1>
-          <div class="flex flex-col md:flex-row gap-4 justify-center items-start">
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
             <!-- Zone.js based component -->
-            <div class="w-full md:w-1/2 p-2">
-              <h2 class="text-xl font-bold mb-2 text-center">Coarse-grained re-render</h2>
-              <app-outer-counter></app-outer-counter>
+            <div class="flex flex-col w-full md:w-1/2 p-2">
+              <h2 class="text-lg font-bold mb-2 text-center">Coarse-grained re-render</h2>
+              <app-outer-counter class="grow"></app-outer-counter>
             </div>
 
             <!-- Signal based component -->
-            <div class="w-full md:w-1/2 p-2">
-              <h2 class="text-xl font-bold mb-2 text-center">Fine-grained re-render</h2>
-              <app-outer-counter-signal></app-outer-counter-signal>
+            <div class="flex flex-col w-full md:w-1/2 p-2">
+              <h2 class="text-lg font-bold mb-2 text-center">Fine-grained re-render</h2>
+              <app-outer-counter-signal class="grow"></app-outer-counter-signal>
             </div>
           </div>
 
