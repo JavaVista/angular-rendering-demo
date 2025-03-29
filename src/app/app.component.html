@@ -73,9 +73,9 @@
 
   .content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
-    max-width: 700px;
+    max-width: 1000px;
     margin-bottom: 3rem;
   }
 
@@ -85,6 +85,13 @@
 
   .content p {
     margin-top: 1.5rem;
+  }
+ .left-side {
+    flex: 3; /* Left-side takes 3 parts */
+  }
+
+  .right-side {
+    flex: 2; /* Right-side takes 2 parts */
   }
 
   .divider {
@@ -176,7 +183,7 @@
 
 <main class="main">
   <div class="content">
-    <div class="left-side w-full">
+    <div class="left-side">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 239" fill="none" class="angular-logo">
         <g clip-path="url(#a)">
           <path fill="url(#b)"
@@ -202,7 +209,7 @@
           </clipPath>
         </defs>
       </svg>
-      <h1  class="text-center mb-8">Hello, {{ title }}</h1>
+      <h1  class="text-center mb-8"> {{ title }}</h1>
           <div class="flex flex-col md:flex-row gap-4 justify-center">
             <!-- Zone.js based component -->
             <div class="flex flex-col w-full md:w-1/2 p-2">
@@ -267,6 +274,37 @@
           </svg>
         </a>
       </div>
+
+          <!-- Container for the two-way binding demo -->
+          <div class="mt-8"> <!-- Add margin-top to separate from social links -->
+
+            <!-- Title styled like a pill -->
+            <h3 class="inline-block px-3 py-1 text-sm font-medium bg-blue-100 text-blue-700 rounded-full mb-3">
+              Two-way Binding (Signal)
+            </h3>
+
+            <!-- Input field -->
+            <input type="text" [value]="name()" (input)="updateName($event)" placeholder="Enter your name"
+              class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 mb-2">
+
+            <!-- Output paragraph -->
+            <p class="text-gray-700"> <!-- Removed mt-2 as input has mb-2 -->
+              Hello, {{ name() }}!
+            </p>
+
+            <!-- Descriptive box -->
+            <div class="mt-4 p-4 bg-gray-100 rounded-md"> <!-- Style like the other explanation box -->
+              <p class="text-sm text-gray-600"> <!-- Slightly darker text for readability -->
+                <strong>Demo explanation:</strong> You can achieve two-way binding with signals, but it requires explicit setup
+                because signals are unidirectional by default (one-way data flow). Here, the input event updates the `name` signal
+                directly. Note: `[(ngModel)]` remains useful for its established features and specific Angular use cases.
+              </p>
+            </div>
+
+          </div>
+
+
+
     </div>
   </div>
 </main>
