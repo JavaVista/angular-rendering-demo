@@ -10,5 +10,5 @@ import { OuterCounterSignalComponent } from './FineGrainedRenderingComponents/ou
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'angular-rendering-demo';
+  title = 'Ng Rendering Demo';
 }
