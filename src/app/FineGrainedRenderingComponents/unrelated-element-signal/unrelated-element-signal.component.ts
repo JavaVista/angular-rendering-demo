@@ -20,20 +20,6 @@ export class UnrelatedElementSignalComponent implements DoCheck {
   // detection runs even in components *unrelated* to the data that changed.
   ngDoCheck() {
     console.log('UnrelatedElementComponent — change detection triggered!');
-    if (this.highlight) {
-      this.highlightElement(this.contentDiv.nativeElement);
-      this.highlight = false;
-    }
   }
 
-  private highlightElement(element: HTMLElement) {
-    this.renderer.setStyle(element, 'border', '8px solid red');
-    setTimeout(() => {
-      this.renderer.removeStyle(element, 'border');
-    }, 500);
-  }
-
-  triggerHighlight() {
-    this.highlight = true;
-  }
 }

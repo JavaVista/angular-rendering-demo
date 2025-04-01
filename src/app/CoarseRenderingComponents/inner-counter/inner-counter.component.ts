@@ -29,6 +29,7 @@ export class InnerCounterComponent implements DoCheck {
 
   private highlightElement(element: HTMLElement) {
     this.renderer.setStyle(element, 'border', '8px solid red');
+    this.renderer.setStyle(element, 'box-shadow', '0 8px 8px 0 black');
     setTimeout(() => {
       this.renderer.removeStyle(element, 'border');
     }, 500);
