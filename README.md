@@ -1,59 +1,96 @@
-# AngularRenderingDemo
+# Angular Rendering Demo - Code Camp 2025
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+This repository contains the demo code for the talk "Fine-Grained Reactivity with Signals" presented by Javier Carrion at Code Camp 2025.
 
-## Development server
+It provides a simple visual illustration of the difference between traditional **coarse-grained** change detection (powered by Zone.js) and Angular's newer **fine-grained** reactivity system using Signals.
 
-To start a local development server, run:
+## Purpose
 
-```bash
-ng serve
-```
+The goal of this demo is to showcase:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. **Coarse-Grained Reactivity (Zone.js):** How changes in one component can trigger change detection checks across a wider component subtree, even in unrelated components within that path.
 
-## Code scaffolding
+2. **Fine-Grained Reactivity (Signals):** How Angular Signals enable updates only in the specific components or effects that directly consume the changed signal, leading to potentially more performant updates.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. **Angular Signal Implementation:** Basic usage of `signal()`, `effect()`, `update()`, and passing signals via `@Input()`.
 
-```bash
-ng generate component component-name
-```
+4. **Visual Comparison:** Using highlighting (red borders) to visually represent which components are checked or reacting during state updates in both models.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+5. **Two-Way Binding with Signals:** Demonstrating how to achieve two-way binding manually, given the unidirectional nature of signals.
 
-```bash
-ng generate --help
-```
+## Demo Examples Included
 
-## Building
+The main application (`app.component.html`) displays two columns side-by-side:
 
-To build the project run:
+**Left Column:**
 
-```bash
-ng build
-```
+* **(Coarse-grained):** Uses standard component properties and Zone.js-based change detection.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+  * `OuterCounterComponent`: Holds a counter, passes it down.
 
-## Running unit tests
+  * `InnerCounterComponent`: Receives the counter via `@Input`.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+  * `UnrelatedElementComponent`: Sits alongside the inner component, has no direct dependency on the counter.
 
-```bash
-ng test
-```
+* **(Fine-grained):** Uses Angular Signals for state management.
 
-## Running end-to-end tests
+  * `OuterCounterSignalComponent`: Holds a counter `signal`, passes the signal down.
 
-For end-to-end (e2e) testing, run:
+  * `InnerCounterSignalComponent`: Receives the counter `signal` via `@Input` and uses an `effect` to react.
 
-```bash
-ng e2e
-```
+  * `UnrelatedElementSignalComponent`: Sits alongside the inner component, isolated from the counter signal updates.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**Visual Cue:** When the "Increase" button is clicked in either column, components involved in the update/check cycle will briefly flash a red border. Observe the *scope* of this highlighting in each column.
 
-## Additional Resources
+* **Coarse-grained:** Expect Outer, Inner, *and* Unrelated components to highlight.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* **Fine-grained:** Expect Outer (initiator) and Inner (consumer via `effect`) to highlight, but *not* the Unrelated component.
+
+The **Right Column outmost** section demonstrates a simple two-way binding implementation using a signal.
+
+## How to Run
+
+This project uses the Angular CLI.
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone <your-repository-url>
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```bash
+    cd angular-rendering-demo
+    ```
+
+3. **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+    *(Or `yarn install`)*
+4. **Start the development server:**
+
+    ```bash
+    ng serve
+    ```
+
+    *(Or `yarn start`)*
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any source files.
+
+---
+
+## About the Presenter / Contact
+
+Feel free to connect or reach out!
+
+* **Presenter:** Javier 'Javi' Carrion
+* **Twitter:** [@seetechnologic](https://twitter.com/seetechnologic)
+* **GitHub:** [JavaVista](https://github.com/JavaVista/)
+* **LinkedIn:** [Javier Carrion](https://www.linkedin.com/in/technologic)
+* **GDG Central Florida Discord:** [Join the Community](https://discord.gg/4v5wPtPt)
+
+Thanks for attending the talk!
